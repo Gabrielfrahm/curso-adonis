@@ -21,12 +21,12 @@ class ExceptionHandler extends BaseExceptionHandler {
    *
    * @return {void}
    */
-  async handle (error, { request, response }) {
-    if(error.name === 'ValidationException'){
+  async handle(error, { request, response }) {
+    if (error.name === 'ValidationException') {
       return response.status(error.status).send(error.messages);
     }
 
-    if(Env.get('NODE_ENV') === 'development') {
+    if (Env.get('NODE_ENV') === 'development') {
       const youch = new Youch(error, request.request);
       const errorJSON = await youch.toString();
 
@@ -46,9 +46,10 @@ class ExceptionHandler extends BaseExceptionHandler {
    *
    * @return {void}
    */
-  async report (error, { request }) {
-    console.log(error)
+  async report(error, { request }) {
+   console.log(error)
   }
+
 }
 
 module.exports = ExceptionHandler
